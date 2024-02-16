@@ -33,6 +33,13 @@ function countDown() {
 	}
 }
 
+// função que reproduz o audio especificado no parâmetro
+function playSound(audioName) {
+	let audio = new Audio(`./src/audios/${audioName}.m4a`);
+	audio.volume = 0.2;
+	audio.play();
+}
+
 // função que sorteia um quadrado aleatório e seleciona um inimigo
 function randomSquare() {
 	// percorre todos os quadrados e remove a classe enemy
@@ -72,6 +79,8 @@ function addListenerHitbox() {
 				state.view.score.textContent = state.values.result;
 				// garante que o usuário não continue clicando no mesmo lugar e farme pontos infinitos
 				state.values.hitPosition = null;
+				// sempre que adicionar pontuação, reproduz o audio
+				playSound("src_audios_hit");
 			};
 		});
 	});
