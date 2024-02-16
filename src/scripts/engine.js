@@ -10,9 +10,28 @@ const state = {
 		gameVelocity: 1000,
 		hitPosition: 0,
 		result: 0,
+		currentTime: 60,
 	},
+	actions: {
+		timerId: setInterval(randomSquare, 1000),
+		countDownTimerId: setInterval(countDown, 1000),
+	}
 };
 
+// função que decrementa o tempo
+function countDown() {
+	// sempre que for chamada o tempo vai diminuir;
+	state.values.currentTime--;
+
+	// atualiza o valor visualmente
+	state.view.timeLeft.textContent = state.values.currentTime;
+
+	// confere se o tempo é menor ou igual a 0
+	if (state.values.currentTime <= 0) {
+		// e dispara o resultado
+		alert("Game over! O seu resultado foi: " + state.values.result);
+	}
+}
 
 // função que sorteia um quadrado aleatório e seleciona um inimigo
 function randomSquare() {
@@ -30,11 +49,14 @@ function randomSquare() {
 	state.values.hitPosition = randomSquare.id;
 }
 
+
+/// REFATORADA PARA ACTIONS ///
 // função que move o inimigo e guarda o valor no timerId
-function moveEnemy() {
-	// cria intervalo (a cada x (1000 - ms) tempo ele chama a função randomSquare para adicionar o inimigo em um quadrado temporário)
-	state.values.timerId = setInterval(randomSquare, state.values.gameVelocity);
-}
+// function moveEnemy() {
+// 	cria intervalo (a cada x (1000 - ms) tempo ele chama a função randomSquare para adicionar o inimigo em um quadrado temporário)
+// 	state.values.timerId = setInterval(randomSquare, state.values.gameVelocity);
+// }
+
 
 // função que espera (ouve) uma ação, para ser executada
 function addListenerHitbox() {
@@ -57,7 +79,7 @@ function addListenerHitbox() {
 
 // função principal que chama as funções iniciais
 function init() {
-	moveEnemy();
+	// moveEnemy();
 	addListenerHitbox();
 }
 
