@@ -33,7 +33,7 @@
 
 .enemy {
 	background-image: url("../imagens/ralph.png");
-	/* a propriedade cover, cobre as dimensões da caixinha que a img se encontra */
+	/* a propriedade cover faz com que a img preencha as dimensões da caixinha que ela se encontra */
 	background-size: cover;
 }
 

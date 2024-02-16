@@ -4,6 +4,7 @@ const state = {
 		enemy: document.querySelector(".enemy"),
 		timeLeft: document.querySelector("#time-left"),
 		score: document.querySelector("#score"),
+		lives: document.querySelector("#lives"),
 	},
 	values: {
 		timerId: null,
@@ -11,6 +12,7 @@ const state = {
 		hitPosition: 0,
 		result: 0,
 		currentTime: 60,
+		currentLives: 3,
 	},
 	actions: {
 		timerId: setInterval(randomSquare, 1000),
@@ -18,18 +20,37 @@ const state = {
 	}
 };
 
+
+// função criada para evitar redundância no alerta de Game Over
+function gameOver() {
+	// reseta o intervalo das actions
+	clearInterval(state.actions.countDownTimerId);
+	clearInterval(state.actions.timerId);
+	alert("Game over! O seu resultado foi: " + state.values.result);
+}
+
+// função que decrementa a vida
+function loseLives() {
+	state.values.currentLives--;
+	// altera o valor visualmente 
+	state.view.lives.textContent = state.values.currentLives;
+
+	// confere se a quantidade de vidas é igual ou menor que 0
+	if (state.values.currentLives <= 0) {
+		gameOver();
+	}
+}
+
 // função que decrementa o tempo
 function countDown() {
 	// sempre que for chamada o tempo vai diminuir;
 	state.values.currentTime--;
-
 	// atualiza o valor visualmente
 	state.view.timeLeft.textContent = state.values.currentTime;
-
 	// confere se o tempo é menor ou igual a 0
 	if (state.values.currentTime <= 0) {
-		// e dispara o resultado
-		alert("Game over! O seu resultado foi: " + state.values.result);
+		// e executa a função gameOver
+		gameOver();
 	}
 }
 
@@ -81,6 +102,9 @@ function addListenerHitbox() {
 				state.values.hitPosition = null;
 				// sempre que adicionar pontuação, reproduz o audio
 				playSound("src_audios_hit");
+			} else {
+				// quando o usuário clicar no quadrado vazio, a função loseLives é executada
+				loseLives();
 			};
 		});
 	});
