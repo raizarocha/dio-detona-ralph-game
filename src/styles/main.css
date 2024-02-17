@@ -48,3 +48,24 @@
 .menu-score h2:nth-child(2) {
 	margin-top: 1rem;
 }
+
+.reset {
+	margin-top: 20px;
+	padding: 15px 20px;
+	width: 25%;
+	align-self: center;
+	justify-content: center;
+	color: #ffd700;
+	background-color: #000000;
+	border: none;
+	font-size: 1.5em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-weight: 600;
+  }
+
+  .reset:focus {
+	color: #78bcf3;
+	background-color: #000000;
+  }
