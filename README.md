@@ -14,11 +14,8 @@ Neste repositório, você encontrará um jogo divertido baseado no famoso filme 
 - Use o botão esquerdo do mouse para tentar acertar os Ralphs que aparecem;
 - Cuidado com o tempo e as suas vidas;
 
-  obs.: Atualize a página para resetar e voltar a jogar.
-
-## Créditos
+## 🔎 Créditos
 Este jogo foi desenvolvido como parte de um projeto educacional da Digital Innovation One.
 
----
 Lembre-se de conferir o repositório original [aqui](https://github.com/digitalinnovationone/jsgame-detona-ralph) e deixar uma ⭐️ se você gostou do projeto!
 
